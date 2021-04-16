@@ -94,6 +94,10 @@ class LGDishWasherDevice(LGDevice):
         return data
 
     @property
+    def unique_id(self) -> str:
+        return self._device.id
+
+    @property
     def name(self):
         return self._name
 
