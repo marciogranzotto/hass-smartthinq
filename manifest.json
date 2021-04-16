@@ -4,6 +4,6 @@
     "documentation": "https://github.com/sampsyo/hass-smartthinq",
     "dependencies": [],
     "codeowners": ["@sampsyo"],
-    "requirements": ["git+git://github.com/marciogranzotto/thinq2@41b95ec#egg=wideq"],
+    "requirements": ["git+https://github.com/sampsyo/wideq.git@thinq2#wideq==1.5.0"],
     "issue_tracker": "https://github.com/sampsyo/hass-smartthinq/issues"
 }
