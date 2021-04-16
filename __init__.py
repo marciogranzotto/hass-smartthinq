@@ -13,7 +13,7 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers import discovery
 from homeassistant.helpers.entity import Entity
 
-DOMAIN = 'smartthinq'
+DOMAIN = 'thinq-v2'
 
 CONF_LANGUAGE = 'language'
 CONF_WIDEQ_STATE='wideq_state'
@@ -31,7 +31,7 @@ SMARTTHINQ_COMPONENTS = [
     'climate',
 ]
 KEY_SMARTTHINQ_DEVICES = 'smartthinq_devices'
-README_URL = 'https://github.com/sampsyo/hass-smartthinq/blob/master/README.md'
+README_URL = 'https://github.com/marciogranzotto/hass-smartthinq/blob/master/README.md'
 
 KEY_DEPRECATED_REFRESH_TOKEN = 'refresh_token'
 KEY_DEPRECATED_COUNTRY = 'country'

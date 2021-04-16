@@ -1,5 +1,5 @@
 {
-  "name": "LG SmartThinQ Appliances",
+  "name": "LG SmartThinQ v2 Appliances",
   "content_in_root": true,
   "domains": ["climate", "sensor"],
   "iot_class": "cloud_poll",

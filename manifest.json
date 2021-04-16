@@ -1,6 +1,7 @@
 {
-    "domain": "smartthinq",
-    "name": "hass-smartthinq",
+    "domain": "thinq-v2",
+    "name": "hass-thinq-v2",
+    "version": "1.0.0",
     "documentation": "https://github.com/sampsyo/hass-smartthinq",
     "dependencies": [],
     "codeowners": ["@sampsyo"],
