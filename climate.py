@@ -126,6 +126,10 @@ class LGDevice(ClimateEntity):
         self._swing_mode = SWING_MODE_DEFAULT
 
     @property
+    def unique_id(self) -> str:
+        return self._device.id
+
+    @property
     def device_state_attributes(self):
         return self._attrs
 
