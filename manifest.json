@@ -1,10 +1,10 @@
 {
-    "domain": "thinq-v2",
-    "name": "hass-thinq-v2",
+    "domain": "thinq-climate",
+    "name": "hass-smartthinq",
     "version": "1.0.0",
-    "documentation": "https://github.com/sampsyo/hass-smartthinq",
+    "documentation": "https://github.com/marciogranzotto/hass-smartthinq",
     "dependencies": [],
-    "codeowners": ["@sampsyo"],
-    "requirements": ["git+https://github.com/sampsyo/wideq.git@thinq2#wideq==1.5.0"],
-    "issue_tracker": "https://github.com/sampsyo/hass-smartthinq/issues"
+    "codeowners": ["@marciogranzotto"],
+    "requirements": ["git+https://github.com/marciogranzotto/wideq.git@thinq2#wideq==1.5.0"],
+    "issue_tracker": "https://github.com/marciogranzotto/hass-smartthinq/issues"
 }
