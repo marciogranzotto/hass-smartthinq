@@ -1,5 +1,5 @@
 {
-    "domain": "thinq-v2",
+    "domain": "thinq_v2",
     "name": "hass-smartthinq",
     "version": "1.0.0",
     "documentation": "https://github.com/marciogranzotto/hass-smartthinq",

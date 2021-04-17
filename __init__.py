@@ -13,7 +13,7 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers import discovery
 from homeassistant.helpers.entity import Entity
 
-DOMAIN = 'thinq-v2'
+DOMAIN = 'thinq_v2'
 
 CONF_LANGUAGE = 'language'
 CONF_WIDEQ_STATE='wideq_state'

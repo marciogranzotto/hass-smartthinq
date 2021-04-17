@@ -15,7 +15,7 @@ Add the "custom repository" `marciogranzotto/hass-smartthinq` as an integration.
 
 You can also install it manually:
 
-1. Clone this repository into your `~/.homeassistant` directory under `custom_components` and name it `thinq-v2`. For example, you might do something like this:
+1. Clone this repository into your `~/.homeassistant` directory under `custom_components` and name it `thinq_v2`. For example, you might do something like this:
 
        $ cd ~/.homeassistant
        $ mkdir custom_components
@@ -41,7 +41,7 @@ You can also install it manually:
 
 3. Add a stanza to your Home Assistant `configuration.yaml` like this:
 
-       thinq-v2:
+       thinq_v2:
            wideq_state: /config/wideq_state.json
 
 Where `/config/wideq_state.json` is the path to the JSON file you copied.

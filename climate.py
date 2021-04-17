@@ -6,7 +6,7 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant import const
 import time
 from homeassistant.components.climate import const as c_const
-from custom_components.thinq-v2 import (
+from custom_components.thinq_v2 import (
     CONF_LANGUAGE, KEY_DEPRECATED_COUNTRY,
     KEY_DEPRECATED_LANGUAGE, KEY_DEPRECATED_REFRESH_TOKEN,
     CONF_WIDEQ_STATE)
