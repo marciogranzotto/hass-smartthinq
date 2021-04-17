@@ -3,7 +3,7 @@ import logging
 import time
 import voluptuous as vol
 
-from custom_components.smartthinq import (
+from custom_components.thinq-v2 import (
     CONF_LANGUAGE, KEY_SMARTTHINQ_DEVICES, LGDevice)
 import homeassistant.helpers.config_validation as cv
 from homeassistant.const import CONF_REGION, CONF_TOKEN
