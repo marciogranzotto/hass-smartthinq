@@ -20,13 +20,13 @@ You can also install it manually:
        $ cd ~/.homeassistant
        $ mkdir custom_components
        $ cd custom_components
-       $ git clone https://github.com/marciogranzotto/hass-smartthinq.git smartthinq
+       $ git clone https://github.com/marciogranzotto/hass-smartthinq.git thinq_v2
 
 2. Navigate to the [WideQ][] directory. You can either use the copy installed by Home Assistant, or clone it separately by typing something like:
 
        $ git clone https://github.com/marciogranzotto/wideq.git
-       $ git checkout thinq2
        $ cd wideq
+       $ git checkout thinq2
 
    Authenticate with the SmartThinQ service to get a refresh token by running the WideQ example script. (Eventually, I would like to add a feature to the Home Assistant component that can let you log in through a UI, but I haven't gotten there yet.) Run this in the `wideq` directory:
 
