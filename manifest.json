@@ -5,6 +5,6 @@
     "documentation": "https://github.com/marciogranzotto/hass-smartthinq",
     "dependencies": [],
     "codeowners": ["@marciogranzotto"],
-    "requirements": ["git+https://github.com/marciogranzotto/wideq.git@thinq2#wideq==2.0.0"],
+    "requirements": ["git+https://github.com/marciogranzotto/wideq.git@thinq2#wideq==2.0.1", "pycountry>=20.7.3"],
     "issue_tracker": "https://github.com/marciogranzotto/hass-smartthinq/issues"
 }
