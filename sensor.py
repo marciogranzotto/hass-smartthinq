@@ -1,37 +1,39 @@
 import datetime
 import logging
 import time
-import voluptuous as vol
 
-from custom_components.thinq_v2 import (
-    CONF_LANGUAGE, KEY_SMARTTHINQ_DEVICES, LGDevice)
 import homeassistant.helpers.config_validation as cv
-from homeassistant.const import CONF_REGION, CONF_TOKEN
-
+import voluptuous as vol
 import wideq
+from homeassistant.const import CONF_REGION, CONF_TOKEN
 from wideq import dishwasher
 
-ATTR_DW_STATE = 'state'
-ATTR_DW_REMAINING_TIME = 'remaining_time'
-ATTR_DW_REMAINING_TIME_IN_MINUTES = 'remaining_time_in_minutes'
-ATTR_DW_INITIAL_TIME = 'initial_time'
-ATTR_DW_INITIAL_TIME_IN_MINUTES = 'initial_time_in_minutes'
-ATTR_DW_RESERVE_TIME = 'reserve_time'
-ATTR_DW_RESERVE_TIME_IN_MINUTES = 'reserve_time_in_minutes'
-ATTR_DW_COURSE = 'course'
-ATTR_DW_ERROR = 'error'
-ATTR_DW_DEVICE_TYPE = 'device_type'
+from custom_components.thinq_v2 import (CONF_LANGUAGE, CONF_WIDEQ_STATE,
+                                        KEY_SMARTTHINQ_DEVICES, LGDevice)
+
+ATTR_DW_STATE = "state"
+ATTR_DW_REMAINING_TIME = "remaining_time"
+ATTR_DW_REMAINING_TIME_IN_MINUTES = "remaining_time_in_minutes"
+ATTR_DW_INITIAL_TIME = "initial_time"
+ATTR_DW_INITIAL_TIME_IN_MINUTES = "initial_time_in_minutes"
+ATTR_DW_RESERVE_TIME = "reserve_time"
+ATTR_DW_RESERVE_TIME_IN_MINUTES = "reserve_time_in_minutes"
+ATTR_DW_COURSE = "course"
+ATTR_DW_ERROR = "error"
+ATTR_DW_DEVICE_TYPE = "device_type"
 
 MAX_RETRIES = 5
 
-KEY_DW_OFF = 'Off'
-KEY_DW_DISCONNECTED = 'Disconnected'
+KEY_DW_OFF = "Off"
+KEY_DW_DISCONNECTED = "Disconnected"
 
 LOGGER = logging.getLogger(__name__)
 
 
-def setup_platform(hass, config, add_entities, discovery_info=None):
-    """Set up the LG dishwasher entities"""
+# def setup_platform(hass, config, add_entities, discovery_info=None):
+#     """Set up the LG dishwasher entities"""
+
+
 """ 
     refresh_token = hass.data[CONF_TOKEN]
     region = hass.data[CONF_REGION]
@@ -57,6 +59,10 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     if dishwashers:
         add_entities(dishwashers, True)
     return True """
+
+
+async def async_setup_entry(hass, entry, async_add_entities):
+    async_add_entities([])
 
 
 class LGDishWasherDevice(LGDevice):
@@ -104,11 +110,10 @@ class LGDishWasherDevice(LGDevice):
     @property
     def state(self):
         if self._status:
-          # Process is a more refined string to use for state, if it's present,
-          # use it instead.
+            # Process is a more refined string to use for state, if it's present,
+            # use it instead.
             return self._status.readable_process or self._status.readable_state
-        return dishwasher.DISHWASHER_STATE_READABLE[
-            dishwasher.DishWasherState.OFF.name]
+        return dishwasher.DISHWASHER_STATE_READABLE[dishwasher.DishWasherState.OFF.name]
 
     @property
     def remaining_time(self):
@@ -121,10 +126,11 @@ class LGDishWasherDevice(LGDevice):
         # either in state off or complete, or process night-drying. Return 0
         # minutes remaining in these instances, which is more reflective of
         # reality.
-        if (self._status and
-            (self._status.process == dishwasher.DishWasherProcess.NIGHT_DRYING or
-             self._status.state == dishwasher.DishWasherState.OFF or
-             self._status.state == dishwasher.DishWasherState.COMPLETE)):
+        if self._status and (
+            self._status.process == dishwasher.DishWasherProcess.NIGHT_DRYING
+            or self._status.state == dishwasher.DishWasherState.OFF
+            or self._status.state == dishwasher.DishWasherState.COMPLETE
+        ):
             return 0
         return self._status.remaining_time if self._status else 0
 
@@ -138,8 +144,7 @@ class LGDishWasherDevice(LGDevice):
         # When in state OFF, the dishwasher still returns the initial program
         # length of the previously ran cycle. Instead, return 0 which is more
         # reflective of the dishwasher being off.
-        if (self._status and
-            self._status.state == dishwasher.DishWasherState.OFF):
+        if self._status and self._status.state == dishwasher.DishWasherState.OFF:
             return 0
         return self._status.initial_time if self._status else 0
 
@@ -173,7 +178,7 @@ class LGDishWasherDevice(LGDevice):
         except wideq.NotConnectedError:
             self._status = None
         except wideq.NotLoggedInError:
-            LOGGER.info('Session expired. Refreshing.')
+            LOGGER.info("Session expired. Refreshing.")
             self._client.refresh()
 
     def update(self):
@@ -182,11 +187,11 @@ class LGDishWasherDevice(LGDevice):
         # This method is polled, so try to avoid sleeping in here. If an error
         # occurs, it will naturally be retried on the next poll.
 
-        LOGGER.debug('Updating %s.', self.name)
+        LOGGER.debug("Updating %s.", self.name)
 
         # On initial construction, the dishwasher monitor task
         # will not have been created. If so, start monitoring here.
-        if getattr(self._dishwasher, 'mon', None) is None:
+        if getattr(self._dishwasher, "mon", None) is None:
             self._restart_monitor()
 
         try:
@@ -195,18 +200,18 @@ class LGDishWasherDevice(LGDevice):
             self._status = None
             return
         except wideq.NotLoggedInError:
-            LOGGER.info('Session expired. Refreshing.')
+            LOGGER.info("Session expired. Refreshing.")
             self._client.refresh()
             self._restart_monitor()
             return
 
         if status:
-            LOGGER.debug('Status updated.')
+            LOGGER.debug("Status updated.")
             self._status = status
             self._failed_request_count = 0
             return
 
-        LOGGER.debug('No status available yet.')
+        LOGGER.debug("No status available yet.")
         self._failed_request_count += 1
 
         if self._failed_request_count >= MAX_RETRIES:

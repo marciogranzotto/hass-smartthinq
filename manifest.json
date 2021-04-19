@@ -1,7 +1,8 @@
 {
     "domain": "thinq_v2",
     "name": "SmartThinq v2 Appliances",
-    "version": "1.0.0",
+    "version": "1.1.0",
+    "config_flow": true,
     "documentation": "https://github.com/marciogranzotto/hass-smartthinq",
     "dependencies": [],
     "codeowners": ["@marciogranzotto"],
