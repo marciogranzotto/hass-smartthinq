@@ -12,6 +12,8 @@ from homeassistant.core import callback
 
 from custom_components.thinq_v2 import CONF_LANGUAGE, CONF_WIDEQ_STATE
 
+from .const import DOMAIN, MANUFACTURER
+
 try:
     from homeassistant.components.climate import ClimateEntity
 except ImportError:
@@ -127,6 +129,19 @@ class LGDevice(ClimateEntity):
         self._transient_time = None
 
         self._swing_mode = SWING_MODE_DEFAULT
+
+    @property
+    def device_info(self):
+        return {
+            "identifiers": {
+                # Serial numbers are unique identifiers within a specific domain
+                (DOMAIN, self.unique_id)
+            },
+            "name": self.name,
+            "manufacturer": MANUFACTURER,
+            "model": self._device.model_id,
+            "via_device": (DOMAIN, self._device.id),
+        }
 
     @property
     def unique_id(self) -> str:

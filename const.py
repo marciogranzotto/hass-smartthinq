@@ -15,6 +15,7 @@ CONF_WIDEQ_STATE = "wideq_state"
 
 CLIENT = "client"
 LGE_DEVICES = "lge_devices"
+MANUFACTURER = "LG"
 
 SMARTTHINQ_COMPONENTS = [
     "sensor",
