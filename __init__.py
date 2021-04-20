@@ -215,7 +215,10 @@ async def lge_devices_setup(hass, client, config_entry):
         try:
             for device in client.devices:
                 hass.data[KEY_SMARTTHINQ_DEVICES].append(device.id)
-
+                _LOGGER.info("Found LGE Device with Name: {} - Type: {} - InfoUrl: {}".format(
+                                device.name,
+                                device.type.name,
+                                device.model_info_url))
             for component in SMARTTHINQ_COMPONENTS:
                 discovery.load_platform(hass, component, DOMAIN, {}, config_entry)
                 device_count += 1
