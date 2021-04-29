@@ -40,6 +40,7 @@ FAN_MODES = {
     "HIGH": c_const.FAN_HIGH,
     "NATURE": "nature",
     "POWER": "power",
+    "AUTO": "auto",
 }
 
 
