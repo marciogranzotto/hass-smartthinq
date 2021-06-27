@@ -1,3 +1,11 @@
+
+# DEPRECATED!
+Since https://github.com/ollo69/ha-smartthinq-sensors has updated their integration to support ACs, and seems to be doing a better job at that, please just use that integration instead!
+
+
+
+
+
 Home Assistant: LG SmartThinQ v2 Appliances
 =======================================
 
